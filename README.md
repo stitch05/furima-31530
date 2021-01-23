@@ -29,7 +29,7 @@ has_many :purchases
 | shipping_days_id  | integer    | null: false                    |
 
 belongs_to :user
-has_one :purchases
+has_one :purchase
 
 # shippingsテーブル
 
@@ -43,7 +43,7 @@ has_one :purchases
 | phone_number     | string     | null: false                    |
 | purchase         | references | null: false                    |
 
-belongs_to :purchases
+belongs_to :purchase
 
 # purchasesテーブル
 
@@ -53,4 +53,5 @@ belongs_to :purchases
 | item          | references | null: false                    |
 
 belongs_to :user
+belongs_to :item
 has_one :shippings
