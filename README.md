@@ -21,7 +21,7 @@ has_many :purchases
 | name              | string     | null: false                    |
 | category_id       | integer    | null: false                    |
 | price             | integer    | null: false                    |
-| user              | references | null: false                    |
+| user              | references | null: false,foreign_key: true  |
 | delivery_fee_id   | integer    | null: false                    |
 | description       | text       | null: false                    |
 | trading_status_id | integer    | null: false                    |
@@ -41,7 +41,7 @@ has_one :purchase
 | city             | string     | null: false                    |
 | building_name    | string     |                                |
 | phone_number     | string     | null: false                    |
-| purchase         | references | null: false                    |
+| purchase         | references | null: false,foreign_key: true  |
 
 belongs_to :purchase
 
@@ -50,7 +50,7 @@ belongs_to :purchase
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
 | user          | references | null: false, foreign_key: true |
-| item          | references | null: false                    |
+| item          | references | null: false,foreign_key: true  |
 
 belongs_to :user
 belongs_to :item
