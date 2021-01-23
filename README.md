@@ -13,6 +13,7 @@
 
 has_many :items
 has_one :shipping
+has_one :purchase
 
 # itemsテーブル
 
@@ -30,6 +31,7 @@ has_one :shipping
 
 belongs_to :user
 belongs_to :shipping
+has_one :purchase
 
 # shippingテーブル
 
@@ -51,3 +53,12 @@ belongs_to :shipping
 belongs_to :user
 has_many :item
 
+# purchaseテーブル
+
+| Column        | Type       | Options                        |
+| ------------- | ---------- | ------------------------------ |
+| user          | references | null: false, foreign_key: true |
+| item          | references | null: false                    |
+
+belongs_to :user
+belongs_to :item
