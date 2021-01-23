@@ -12,8 +12,7 @@
 | birth_day          | date   | null: false                   |
 
 has_many :items
-has_one :shipping
-has_one :purchase
+has_many :purchases
 
 # itemsテーブル
 
@@ -30,30 +29,23 @@ has_one :purchase
 | shipping_days_id  | integer    | null: false                    |
 
 belongs_to :user
-belongs_to :shipping
-has_one :purchase
+has_one :purchases
 
-# shippingテーブル
+# shippingsテーブル
 
-| Column          | Type       | Options                        |
-| --------------- | ---------- | ------------------------------ |
-| address         | string     | null: false                    |
-| user            | references | null: false, foreign_key: true |
-| last_name       | string     | null: false                    |
-| first_name      | string     | null: false                    |
-| last_name_kana  | string     | null: false                    |
-| first_name_kana | string     | null: false                    |
-| post_code       | string     | null: false                    |
-| prefecture_id   | integer    | null: false                    |
-| city            | string     | null: false                    |
-| building_name   | string     |                                |
-| phone_number    | string     | null: false                    |
-| item            | references | null: false                    |
+| Column           | Type       | Options                        |
+| ---------------- | ---------- | ------------------------------ |
+| address          | string     | null: false                    |
+| post_code        | string     | null: false                    |
+| shipping_area_id | integer    | null: false                    |
+| city             | string     | null: false                    |
+| building_name    | string     |                                |
+| phone_number     | string     | null: false                    |
+| purchase         | references | null: false                    |
 
-belongs_to :user
-has_many :item
+belongs_to :purchases
 
-# purchaseテーブル
+# purchasesテーブル
 
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
@@ -61,4 +53,4 @@ has_many :item
 | item          | references | null: false                    |
 
 belongs_to :user
-belongs_to :item
+has_one :shippings
