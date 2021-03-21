@@ -8,11 +8,15 @@ class Item < ApplicationRecord
   belongs_to :user
   has_one_attached :image
 
-  validates :name, :price, :description, presence: true
-  validates_numericality_of :price, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999
 
-  # validates :price, numericality: { greater_than_or_equal_to: 300, 
-  #                                  less_than_or_equal_to: 9_999_999 }
+  with_options presence: true do
+    validates :name
+    validates :price
+    validates :description
+    validates :image
+  end
+  
+  validates_numericality_of :price, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999
 
   with_options presence: true, numericality: { other_than: 1 } do
     validates :category_id 

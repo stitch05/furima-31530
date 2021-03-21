@@ -7,6 +7,5 @@ window.addEventListener('load', () => {
  tax = Math.floor(inputValue * 0.1)
  addTaxDom.innerHTML = tax
  profit.innerHTML = Math.floor(inputValue - tax);
-    console.log(profit);
  })
 })
