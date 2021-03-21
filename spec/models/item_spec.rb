@@ -96,6 +96,16 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Shipping day must be other than 1")
       end
+      it "画像が空では登録できない" do
+        @item.image= nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Image can't be blank")
+      end
+      it "商品説明が空では登録できない" do
+        @item.description= ""
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Description can't be blank")
+      end
    end
  end
 end
