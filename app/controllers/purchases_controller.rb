@@ -1,5 +1,6 @@
 class PurchasesController < ApplicationController
-
+  before_action :authenticate_user!, only: [:index, :create]
+  before_action :move_to_index, only: [:index, :create]
   def index
     @item = Item.find(params[:item_id])
     @purchase = PurchaseForm.new
@@ -19,8 +20,15 @@ class PurchasesController < ApplicationController
   end
 
   private
+  def move_to_index
+    @item = Item.find(params[:item_id])
+    if current_user.id == @item.user.id || @item.purchase != nil
+      redirect_to root_path
+    end
+  end
+  
   def purchase_params
-    params.require(:purchase_form).permit(:post_code, :prefecture_id, :city, :address, :building_name, :phone_number, :item_id, :shipping_area_id).merge(user_id: current_user.id,item_id:params[:item_id],token:params[:token])
+    params.require(:purchase_form).permit(:post_code, :city, :address, :building_name, :phone_number, :item_id, :shipping_area_id).merge(user_id: current_user.id,item_id:params[:item_id],token:params[:token])
   end
   
   def pay_item
