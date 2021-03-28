@@ -7,8 +7,10 @@ class PurchaseForm
     validates :city, format: { with: /\A[ぁ-んァ-ン一-龥]/, message: "is invalid. Input full-width characters."}
     validates :address
     validates :phone_number, format: {with: /\A\d{10}\z|\A\d{11}\z/ , message: "is invalid."}
+    validates :token
+    validates :user_id
+    validates :item_id
   end
-  validate :building_name
   with_options presence: true, numericality: { other_than: 1, message: "can't be blank"  } do
     validates :shipping_area_id
   end
