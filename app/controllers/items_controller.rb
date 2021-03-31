@@ -39,10 +39,10 @@ class ItemsController < ApplicationController
       @item.destroy
       redirect_to root_path
   end
-  
+
   private
   def move_to_index
-    if current_user.id != @item.user.id
+    if current_user.id != @item.user.id || @item.purchase == nil
       redirect_to root_path
     end
   end
